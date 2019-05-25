@@ -1,0 +1,1052 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IC para média e variância</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="aula-10---intervalo-de-confiança-para-a-média-e-variância">Aula 10 - Intervalo de Confiança para a Média e Variância</h1>
+<h2 id="fundamentos">Fundamentos</h2>
+<p>Partiremos da ideia do uso de estimadores para obter valores de parâmetros da população em termos de um conjunto amostral;<br>
+<strong>Estimador da Média</strong>: <span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi mathvariant="normal">Θ</mi><mi>μ</mi></msub><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>x</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex"> \Theta_\mu = \frac{1}{n}\sum_{i=1}^{n}{x_i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.969438em; vertical-align: -0.286108em;"></span><span class="mord"><span class="mord">Θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.151392em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight">μ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.286108em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 2.92907em; vertical-align: -1.27767em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.32144em;"><span class="" style="top: -2.314em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathit">n</span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.686em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.6514em;"><span class="" style="top: -1.87233em; margin-left: 0em;"><span class="pstrut" style="height: 3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span class="" style="top: -3.05001em;"><span class="pstrut" style="height: 3.05em;"></span><span class=""><span class="mop op-symbol large-op">∑</span></span></span><span class="" style="top: -4.30001em; margin-left: 0em;"><span class="pstrut" style="height: 3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 1.27767em;"><span class=""></span></span></span></span></span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord"><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.311664em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span></span></span></span></span><br>
+<strong>Estimador da Variância</strong>: <span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi mathvariant="normal">Θ</mi><mi>σ</mi><mn>2</mn></msubsup><mo>=</mo><mfrac><mn>1</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mrow><mo>(</mo><msub><mi>x</mi><mi>i</mi></msub><mo>−</mo><msub><mi mathvariant="normal">Θ</mi><mi>μ</mi></msub><msup><mo>)</mo><mn>2</mn></msup></mrow></mrow><annotation encoding="application/x-tex"> \Theta_\sigma^2 = \frac{1}{n-1}\sum_{i=1}^{n}{(x_i-\Theta_{\mu})^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1.11111em; vertical-align: -0.247em;"></span><span class="mord"><span class="mord">Θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.864108em;"><span class="" style="top: -2.453em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight" style="margin-right: 0.03588em;">σ</span></span></span><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.247em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 2.92907em; vertical-align: -1.27767em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.32144em;"><span class="" style="top: -2.314em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathit">n</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord">1</span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.76933em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.6514em;"><span class="" style="top: -1.87233em; margin-left: 0em;"><span class="pstrut" style="height: 3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span class="" style="top: -3.05001em;"><span class="pstrut" style="height: 3.05em;"></span><span class=""><span class="mop op-symbol large-op">∑</span></span></span><span class="" style="top: -4.30001em; margin-left: 0em;"><span class="pstrut" style="height: 3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 1.27767em;"><span class=""></span></span></span></span></span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord"><span class="mopen">(</span><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.311664em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord"><span class="mord">Θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.151392em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">μ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.286108em;"><span class=""></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.864108em;"><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></span></span><br>
+Usa-se <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.66666em; vertical-align: -0.08333em;"></span><span class="mord mathit">n</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span class="mord">1</span></span></span></span></span> para construir um estimador para a variância não enviesado.<br>
+Nos resta identificar o quão confiável são os valores obtidos para os parâmetros estimados em relação aos parâmetros reais da população;</p>
+<p><strong>Pergunta:</strong> qual é a confiabilidade dos parâmetros? Em que intervalo podemos confiar encontrar o parâmetro real em relação ao estimado?</p>
+<p>Um <strong>Intervalo de Confiança</strong> para um parâmetro é um intervalo na forma <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mrow><mi>i</mi><mi>n</mi><mi>f</mi></mrow></msub><mo>≤</mo><mi>θ</mi><mo>≤</mo><msub><mi>L</mi><mrow><mi>s</mi><mi>u</mi><mi>p</mi></mrow></msub></mrow><annotation encoding="application/x-tex">L_{inf} \le \theta \le L_{sup}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.969438em; vertical-align: -0.286108em;"></span><span class="mord"><span class="mord mathit">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.336108em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">i</span><span class="mord mathit mtight">n</span><span class="mord mathit mtight" style="margin-right: 0.10764em;">f</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.286108em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.83041em; vertical-align: -0.13597em;"></span><span class="mord mathit" style="margin-right: 0.02778em;">θ</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.969438em; vertical-align: -0.286108em;"></span><span class="mord"><span class="mord mathit">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.151392em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">s</span><span class="mord mathit mtight">u</span><span class="mord mathit mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.286108em;"><span class=""></span></span></span></span></span></span></span></span></span></span> tal que os valores <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mrow><mi>i</mi><mi>n</mi><mi>f</mi></mrow></msub></mrow><annotation encoding="application/x-tex">L_{inf}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.969438em; vertical-align: -0.286108em;"></span><span class="mord"><span class="mord mathit">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.336108em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">i</span><span class="mord mathit mtight">n</span><span class="mord mathit mtight" style="margin-right: 0.10764em;">f</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.286108em;"><span class=""></span></span></span></span></span></span></span></span></span></span> e <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mrow><mi>s</mi><mi>u</mi><mi>p</mi></mrow></msub></mrow><annotation encoding="application/x-tex">L_{sup}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.969438em; vertical-align: -0.286108em;"></span><span class="mord"><span class="mord mathit">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.151392em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">s</span><span class="mord mathit mtight">u</span><span class="mord mathit mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.286108em;"><span class=""></span></span></span></span></span></span></span></span></span></span> são computados a partir do conjunto amostral.</p>
+<p>Construindo infinitos intervalos<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><msub><mi>L</mi><mrow><mi>i</mi><mi>n</mi><mi>f</mi></mrow></msub><mo separator="true">,</mo><msub><mi>L</mi><mrow><mi>s</mi><mi>u</mi><mi>p</mi></mrow></msub><mo>]</mo></mrow><annotation encoding="application/x-tex">[L_{inf}, L_{sup}]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1.03611em; vertical-align: -0.286108em;"></span><span class="mopen">[</span><span class="mord"><span class="mord mathit">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.336108em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">i</span><span class="mord mathit mtight">n</span><span class="mord mathit mtight" style="margin-right: 0.10764em;">f</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.286108em;"><span class=""></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord"><span class="mord mathit">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.151392em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">s</span><span class="mord mathit mtight">u</span><span class="mord mathit mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.286108em;"><span class=""></span></span></span></span></span></span><span class="mclose">]</span></span></span></span></span> a partir de infinitas estimativas encontraremos o verdadeiro valor do parâmetro <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.02778em;">θ</span></span></span></span></span> em <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo>)</mo><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">(1-\alpha)\times100\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.80556em; vertical-align: -0.05556em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">%</span></span></span></span></span> destes intervalos.<br>
+Uma confiança de <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(1-\alpha)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mclose">)</span></span></span></span></span> significa que <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mi>r</mi><mi>o</mi><mi>b</mi><mo>(</mo><msub><mi>L</mi><mrow><mi>i</mi><mi>n</mi><mi>f</mi></mrow></msub><mo>≤</mo><mi>θ</mi><mo>≤</mo><msub><mi>L</mi><mrow><mi>s</mi><mi>u</mi><mi>p</mi></mrow></msub><mo>)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">Prob(L_{inf} \le \theta \le L_{sup})=1-\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1.03611em; vertical-align: -0.286108em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">P</span><span class="mord mathit" style="margin-right: 0.02778em;">r</span><span class="mord mathit">o</span><span class="mord mathit">b</span><span class="mopen">(</span><span class="mord"><span class="mord mathit">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.336108em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">i</span><span class="mord mathit mtight">n</span><span class="mord mathit mtight" style="margin-right: 0.10764em;">f</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.286108em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.83041em; vertical-align: -0.13597em;"></span><span class="mord mathit" style="margin-right: 0.02778em;">θ</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.03611em; vertical-align: -0.286108em;"></span><span class="mord"><span class="mord mathit">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.151392em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">s</span><span class="mord mathit mtight">u</span><span class="mord mathit mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.286108em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span></span></span></span></span>. Como determinar os limites para garantir a confiança de <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(1-\alpha)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mclose">)</span></span></span></span></span>?</p>
+<p><strong>Ponto de Partida</strong>: conhecer a distribuição amostral do estimador:</p>
+<p>Um estimador pode ter distribuição de probabilidade <em>normal</em>, <em>t-Student</em>, <em>Chi-quadrado</em> entre outras;</p>
+<ul>
+<li><em>Normal</em>: estimador da média com variância conhecida;</li>
+<li><em>t-Student</em>: estimador da média com variância desconhecida;</li>
+<li><em>Chi-quadrado</em>: estimador da variância;</li>
+</ul>
+<h2 id="intervalos-de-confiança-para-a-média">Intervalos de Confiança para a Média</h2>
+<p>É o intervalo definido para cálculo da média <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi mathvariant="normal">Θ</mi><mi>μ</mi></msub></mrow><annotation encoding="application/x-tex">\Theta_{\mu}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.969438em; vertical-align: -0.286108em;"></span><span class="mord"><span class="mord">Θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.151392em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">μ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.286108em;"><span class=""></span></span></span></span></span></span></span></span></span></span> com base na média amostral calculada <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>x</mi><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">\overline{x}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.63056em; vertical-align: 0em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.63056em;"><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathit">x</span></span></span><span class="" style="top: -3.55056em;"><span class="pstrut" style="height: 3em;"></span><span class="overline-line" style="border-bottom-width: 0.04em;"></span></span></span></span></span></span></span></span></span></span>;</p>
+<ul>
+<li><em>Normal</em>: estimador da média com variância conhecida - calculada com base em <em>escore-Z</em>;</li>
+<li><em>t-Student</em>: estimador da média com variância desconhecida - <em>escore-t</em>;</li>
+</ul>
+<h3 id="variância-conhecida">Variância conhecida</h3>
+<p><strong>Intervalo unilateral</strong> <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>z</mi><mi>α</mi></msub></mrow><annotation encoding="application/x-tex">z_\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.58056em; vertical-align: -0.15em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.151392em;"><span class="" style="top: -2.55em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span></span></span>: escore-z implica em <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>−</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">1-\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span></span></span></span></span><br>
+Intervalo de confiança é escrito como:<br>
+<span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>x</mi><mo stretchy="true">‾</mo></mover><mo>−</mo><mfrac><mrow><msub><mi>z</mi><mi>α</mi></msub><mi>σ</mi></mrow><msqrt><mi>n</mi></msqrt></mfrac><mo>≤</mo><mi>μ</mi></mrow><annotation encoding="application/x-tex">\overline{x} -\frac{ z_{\alpha} \sigma}{\sqrt{n}} \le \mu  </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.71389em; vertical-align: -0.08333em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.63056em;"><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathit">x</span></span></span><span class="" style="top: -3.55056em;"><span class="pstrut" style="height: 3em;"></span><span class="overline-line" style="border-bottom-width: 0.04em;"></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 2.03756em; vertical-align: -0.93em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.10756em;"><span class="" style="top: -2.30972em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.80028em;"><span class="svg-align" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord" style="padding-left: 0.833em;"><span class="mord mathit">n</span></span></span><span class="" style="top: -2.76028em;"><span class="pstrut" style="height: 3em;"></span><span class="hide-tail" style="min-width: 0.853em; height: 1.08em;"><svg width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.23972em;"><span class=""></span></span></span></span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.151392em;"><span class="" style="top: -2.55em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span><span class="mord mathit" style="margin-right: 0.03588em;">σ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.93em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.625em; vertical-align: -0.19444em;"></span><span class="mord mathit">μ</span></span></span></span></span></span> ou <span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>x</mi><mo stretchy="true">‾</mo></mover><mo>−</mo><mfrac><mrow><msub><mi>z</mi><mi>α</mi></msub><mi>σ</mi></mrow><msqrt><mi>n</mi></msqrt></mfrac><mo>≥</mo><mi>μ</mi></mrow><annotation encoding="application/x-tex">\overline{x} -\frac{ z_{\alpha} \sigma}{\sqrt{n}} \ge\mu</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.71389em; vertical-align: -0.08333em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.63056em;"><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathit">x</span></span></span><span class="" style="top: -3.55056em;"><span class="pstrut" style="height: 3em;"></span><span class="overline-line" style="border-bottom-width: 0.04em;"></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 2.03756em; vertical-align: -0.93em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.10756em;"><span class="" style="top: -2.30972em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.80028em;"><span class="svg-align" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord" style="padding-left: 0.833em;"><span class="mord mathit">n</span></span></span><span class="" style="top: -2.76028em;"><span class="pstrut" style="height: 3em;"></span><span class="hide-tail" style="min-width: 0.853em; height: 1.08em;"><svg width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.23972em;"><span class=""></span></span></span></span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.151392em;"><span class="" style="top: -2.55em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span><span class="mord mathit" style="margin-right: 0.03588em;">σ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.93em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.625em; vertical-align: -0.19444em;"></span><span class="mord mathit">μ</span></span></span></span></span></span><br>
+<strong>Intervalo bilateral</strong> <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub></mrow><annotation encoding="application/x-tex">z_{\alpha/2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.78576em; vertical-align: -0.3552em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.5198em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.3552em;"><span class=""></span></span></span></span></span></span></span></span></span></span>: escore-z implica em <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>−</mo><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></mrow><annotation encoding="application/x-tex">1-{\alpha/2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mord">/</span><span class="mord">2</span></span></span></span></span></span><br>
+<span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>x</mi><mo stretchy="true">‾</mo></mover><mo>−</mo><mfrac><mrow><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mi>σ</mi></mrow><msqrt><mi>n</mi></msqrt></mfrac><mo>≤</mo><mi>μ</mi><mo>≤</mo><mover accent="true"><mi>x</mi><mo stretchy="true">‾</mo></mover><mo>+</mo><mfrac><mrow><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mi>σ</mi></mrow><msqrt><mi>n</mi></msqrt></mfrac></mrow><annotation encoding="application/x-tex">\overline{x} -\frac{ z_{\alpha/2} \sigma}{\sqrt{n}} \le \mu \le \overline{x} +\frac{ z_{\alpha/2} \sigma}{\sqrt{n}} </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.71389em; vertical-align: -0.08333em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.63056em;"><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathit">x</span></span></span><span class="" style="top: -3.55056em;"><span class="pstrut" style="height: 3em;"></span><span class="overline-line" style="border-bottom-width: 0.04em;"></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 2.10576em; vertical-align: -0.93em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.17576em;"><span class="" style="top: -2.30972em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.80028em;"><span class="svg-align" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord" style="padding-left: 0.833em;"><span class="mord mathit">n</span></span></span><span class="" style="top: -2.76028em;"><span class="pstrut" style="height: 3em;"></span><span class="hide-tail" style="min-width: 0.853em; height: 1.08em;"><svg width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.23972em;"><span class=""></span></span></span></span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.7452em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.5198em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.3552em;"><span class=""></span></span></span></span></span></span><span class="mord mathit" style="margin-right: 0.03588em;">σ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.93em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.83041em; vertical-align: -0.19444em;"></span><span class="mord mathit">μ</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.71389em; vertical-align: -0.08333em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.63056em;"><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathit">x</span></span></span><span class="" style="top: -3.55056em;"><span class="pstrut" style="height: 3em;"></span><span class="overline-line" style="border-bottom-width: 0.04em;"></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 2.10576em; vertical-align: -0.93em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.17576em;"><span class="" style="top: -2.30972em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.80028em;"><span class="svg-align" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord" style="padding-left: 0.833em;"><span class="mord mathit">n</span></span></span><span class="" style="top: -2.76028em;"><span class="pstrut" style="height: 3em;"></span><span class="hide-tail" style="min-width: 0.853em; height: 1.08em;"><svg width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.23972em;"><span class=""></span></span></span></span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.7452em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.5198em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.3552em;"><span class=""></span></span></span></span></span></span><span class="mord mathit" style="margin-right: 0.03588em;">σ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.93em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span></p>
+<p><strong>Exemplo</strong><br>
+Dez medições da energia de impacto de tipos de corte de aço a <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>60</mn><mi mathvariant="normal">º</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">60 ºC</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord">6</span><span class="mord">0</span><span class="mord">º</span><span class="mord mathit" style="margin-right: 0.07153em;">C</span></span></span></span></span> são: 64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, e 64.3.<br>
+A energia de impacto é normalmente distribuída com desvio-padrão de 1J. Encontrar um intervalo de confiança de 95% para a média</p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token comment"># calculo da media amostral</span>
+X <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">64.1</span><span class="token punctuation">,</span> <span class="token number">64.7</span><span class="token punctuation">,</span> <span class="token number">64.5</span><span class="token punctuation">,</span> <span class="token number">64.6</span><span class="token punctuation">,</span> <span class="token number">64.5</span><span class="token punctuation">,</span> <span class="token number">64.3</span><span class="token punctuation">,</span> <span class="token number">64.6</span><span class="token punctuation">,</span> <span class="token number">64.8</span><span class="token punctuation">,</span> <span class="token number">64.2</span><span class="token punctuation">,</span>  <span class="token number">64.3</span><span class="token punctuation">]</span>
+medX <span class="token operator">=</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>X<span class="token punctuation">)</span>
+n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span>
+zA2 <span class="token operator">=</span> <span class="token number">1.96</span>
+sigma <span class="token operator">=</span> <span class="token number">1</span> <span class="token comment">#Variancia Conhecida</span>
+Linf <span class="token operator">=</span> medX <span class="token operator">-</span> zA2 <span class="token operator">*</span>sigma<span class="token operator">/</span>np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+Lsup <span class="token operator">=</span> medX <span class="token operator">+</span> zA2 <span class="token operator">*</span>sigma<span class="token operator">/</span>np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Intervalo de Confianca:"</span><span class="token punctuation">,</span>Linf <span class="token punctuation">,</span><span class="token string">"a"</span><span class="token punctuation">,</span>Lsup<span class="token punctuation">)</span>
+</code></pre>
+<h4 id="como-fazer-para-encontrar-o-escore-z">Como fazer para encontrar o escore-z?</h4>
+<p>Para determinar o escore-z, localizamos na tabela de distribuição normal os valores que resultam em um intervalo cuja probabilidade é <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(1-\alpha)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mclose">)</span></span></span></span></span>. Tomando como exemplo a tabela normal parcialmente mostrada a seguir:<br>
+Tabela normal:<span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo>(</mo><mi>X</mi><mo>≤</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">P(X\le x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit" style="margin-right: 0.07847em;">X</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit">x</span><span class="mclose">)</span></span></span></span></span>, para encontrarmos <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub></mrow><annotation encoding="application/x-tex">-z_{\alpha/2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.93853em; vertical-align: -0.3552em;"></span><span class="mord">−</span><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.5198em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.3552em;"><span class=""></span></span></span></span></span></span></span></span></span></span> e <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub></mrow><annotation encoding="application/x-tex">z_{\alpha/2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.78576em; vertical-align: -0.3552em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.5198em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.3552em;"><span class=""></span></span></span></span></span></span></span></span></span></span> usaremos as propriedades da distribuição normal:<br>
+<span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mi>x</mi><mo>≤</mo><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mo>)</mo><mo>−</mo><mi>P</mi><mo>(</mo><mi>x</mi><mo>≤</mo><mo>−</mo><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">(1-\alpha) = P(x\le z_{\alpha/2}) - P(x\le -z_{\alpha/2})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.1052em; vertical-align: -0.3552em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.5198em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.3552em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.1052em; vertical-align: -0.3552em;"></span><span class="mord">−</span><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.5198em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.3552em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></span><br>
+<span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo>(</mo><mi>x</mi><mo>≤</mo><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mi>x</mi><mo>≥</mo><mo>−</mo><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mo>)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo>(</mo><mi>x</mi><mo>≤</mo><mo>−</mo><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">P(x\le z_{\alpha/2})  = P(x\ge - z_{\alpha/2}) = 1 - P(x\le -z_{\alpha/2}) </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.1052em; vertical-align: -0.3552em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.5198em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.3552em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.1052em; vertical-align: -0.3552em;"></span><span class="mord">−</span><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.5198em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.3552em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.1052em; vertical-align: -0.3552em;"></span><span class="mord">−</span><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.5198em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.3552em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></span><br>
+Assim, reescrevemos como:<br>
+<span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo>)</mo><mo>=</mo><mi>P</mi><mo>(</mo><mi>x</mi><mo>≤</mo><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mo>)</mo><mo>−</mo><mrow><mo fence="true">(</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo>(</mo><mi>x</mi><mo>≤</mo><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mo>)</mo><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">(1-\alpha) = P(x\le z_{\alpha/2}) - \left( 1 - P(x\le z_{\alpha/2})\right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.1052em; vertical-align: -0.3552em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.5198em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.3552em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1.2052em; vertical-align: -0.3552em;"></span><span class="minner"><span class="mopen delimcenter" style="top: 0em;"><span class="delimsizing size1">(</span></span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.5198em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.3552em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose delimcenter" style="top: 0em;"><span class="delimsizing size1">)</span></span></span></span></span></span></span></span><br>
+<span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo>)</mo><mo>=</mo><mn>2</mn><mi>P</mi><mo>(</mo><mi>x</mi><mo>≤</mo><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mo>)</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">(1-\alpha) = 2P(x\le z_{\alpha/2}) -1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord">2</span><span class="mord mathit" style="margin-right: 0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.1052em; vertical-align: -0.3552em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.5198em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.3552em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span class="mord">1</span></span></span></span></span></span><br>
+<span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>=</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo>(</mo><mi>x</mi><mo>≤</mo><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">\alpha/2= 1-P(x\le z_{\alpha/2}) </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mord">/</span><span class="mord">2</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.1052em; vertical-align: -0.3552em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.5198em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.3552em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></span></p>
+<h4 id="exemplo-determinar-os-escores-z-para-um-intervalo-de-confiança-de-95">Exemplo: determinar os escores z para um intervalo de confiança de 95%</h4>
+<p><span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo>)</mo><mo>=</mo><mn>95</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">(1-\alpha) = 95\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.80556em; vertical-align: -0.05556em;"></span><span class="mord">9</span><span class="mord">5</span><span class="mord">%</span></span></span></span></span> então <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>05</mn><mo>→</mo><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>025</mn></mrow><annotation encoding="application/x-tex">\alpha = 0,05 \rightarrow \alpha/2 =0,025</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.83888em; vertical-align: -0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">0</span><span class="mord">5</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mord">/</span><span class="mord">2</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.83888em; vertical-align: -0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">0</span><span class="mord">2</span><span class="mord">5</span></span></span></span></span><br>
+<span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mn>025</mn><mo>=</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo>(</mo><mi>x</mi><mo>≤</mo><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mo>)</mo><mo>→</mo><mi>P</mi><mo>(</mo><mi>x</mi><mo>≤</mo><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mo>)</mo><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>975</mn></mrow><annotation encoding="application/x-tex">0,025= 1-P(x\le z_{\alpha/2}) \rightarrow P(x\le z_{\alpha/2}) = 0,975</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.83888em; vertical-align: -0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">0</span><span class="mord">2</span><span class="mord">5</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.1052em; vertical-align: -0.3552em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.5198em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.3552em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.1052em; vertical-align: -0.3552em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.5198em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.3552em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.83888em; vertical-align: -0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">9</span><span class="mord">7</span><span class="mord">5</span></span></span></span></span></span></p>
+
+<table>
+<thead>
+<tr>
+<th>x</th>
+<th>0</th>
+<th>0,01</th>
+<th>0,02</th>
+<th>0,03</th>
+<th>0,04</th>
+<th>0,05</th>
+<th>0,06</th>
+<th>0,07</th>
+<th>0,08</th>
+<th>0,09</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0,0</td>
+<td>0,5000</td>
+<td>0,5040</td>
+<td>0,5080</td>
+<td>0,5120</td>
+<td>0,5160</td>
+<td>0,5199</td>
+<td>0,5239</td>
+<td>0,5279</td>
+<td>0,5319</td>
+<td>0,5359</td>
+</tr>
+<tr>
+<td>0,1</td>
+<td>0,5398</td>
+<td>0,5438</td>
+<td>0,5478</td>
+<td>0,5517</td>
+<td>0,5557</td>
+<td>0,5596</td>
+<td>0,5636</td>
+<td>0,5675</td>
+<td>0,5714</td>
+<td>0,5753</td>
+</tr>
+<tr>
+<td>0,2</td>
+<td>0,5793</td>
+<td>0,5832</td>
+<td>0,5871</td>
+<td>0,5910</td>
+<td>0,5948</td>
+<td>0,5987</td>
+<td>0,6026</td>
+<td>0,6064</td>
+<td>0,6103</td>
+<td>0,6141</td>
+</tr>
+<tr>
+<td>0,3</td>
+<td>0,6179</td>
+<td>0,6217</td>
+<td>0,6255</td>
+<td>0,6293</td>
+<td>0,6331</td>
+<td>0,6368</td>
+<td>0,6406</td>
+<td>0,6443</td>
+<td>0,6480</td>
+<td>0,6517</td>
+</tr>
+<tr>
+<td>0,4</td>
+<td>0,6554</td>
+<td>0,6591</td>
+<td>0,6628</td>
+<td>0,6664</td>
+<td>0,6700</td>
+<td>0,6736</td>
+<td>0,6772</td>
+<td>0,6808</td>
+<td>0,6844</td>
+<td>0,6879</td>
+</tr>
+<tr>
+<td>0,5</td>
+<td>0,6915</td>
+<td>0,6950</td>
+<td>0,6985</td>
+<td>0,7019</td>
+<td>0,7054</td>
+<td>0,7088</td>
+<td>0,7123</td>
+<td>0,7157</td>
+<td>0,7190</td>
+<td>0,7224</td>
+</tr>
+<tr>
+<td>0,6</td>
+<td>0,7257</td>
+<td>0,7291</td>
+<td>0,7324</td>
+<td>0,7357</td>
+<td>0,7389</td>
+<td>0,7422</td>
+<td>0,7454</td>
+<td>0,7486</td>
+<td>0,7517</td>
+<td>0,7549</td>
+</tr>
+<tr>
+<td>0,7</td>
+<td>0,7580</td>
+<td>0,7611</td>
+<td>0,7642</td>
+<td>0,7673</td>
+<td>0,7704</td>
+<td>0,7734</td>
+<td>0,7764</td>
+<td>0,7794</td>
+<td>0,7823</td>
+<td>0,7852</td>
+</tr>
+<tr>
+<td>0,8</td>
+<td>0,7881</td>
+<td>0,7910</td>
+<td>0,7939</td>
+<td>0,7967</td>
+<td>0,7995</td>
+<td>0,8023</td>
+<td>0,8051</td>
+<td>0,8078</td>
+<td>0,8106</td>
+<td>0,8133</td>
+</tr>
+<tr>
+<td>0,9</td>
+<td>0,8159</td>
+<td>0,8186</td>
+<td>0,8212</td>
+<td>0,8238</td>
+<td>0,8264</td>
+<td>0,8289</td>
+<td>0,8315</td>
+<td>0,8340</td>
+<td>0,8365</td>
+<td>0,8389</td>
+</tr>
+<tr>
+<td>1,0</td>
+<td>0,8413</td>
+<td>0,8438</td>
+<td>0,8461</td>
+<td>0,8485</td>
+<td>0,8508</td>
+<td>0,8531</td>
+<td>0,8554</td>
+<td>0,8577</td>
+<td>0,8599</td>
+<td>0,8621</td>
+</tr>
+<tr>
+<td>1,1</td>
+<td>0,8643</td>
+<td>0,8665</td>
+<td>0,8686</td>
+<td>0,8708</td>
+<td>0,8729</td>
+<td>0,8749</td>
+<td>0,8770</td>
+<td>0,8790</td>
+<td>0,8810</td>
+<td>0,8830</td>
+</tr>
+<tr>
+<td>1,2</td>
+<td>0,8849</td>
+<td>0,8869</td>
+<td>0,8888</td>
+<td>0,8907</td>
+<td>0,8925</td>
+<td>0,8944</td>
+<td>0,8962</td>
+<td>0,8980</td>
+<td>0,8997</td>
+<td>0,9015</td>
+</tr>
+<tr>
+<td>1,3</td>
+<td>0,9032</td>
+<td>0,9049</td>
+<td>0,9066</td>
+<td>0,9082</td>
+<td>0,9099</td>
+<td>0,9115</td>
+<td>0,9131</td>
+<td>0,9147</td>
+<td>0,9162</td>
+<td>0,9177</td>
+</tr>
+<tr>
+<td>1,4</td>
+<td>0,9192</td>
+<td>0,9207</td>
+<td>0,9222</td>
+<td>0,9236</td>
+<td>0,9251</td>
+<td>0,9265</td>
+<td>0,9279</td>
+<td>0,9292</td>
+<td>0,9306</td>
+<td>0,9319</td>
+</tr>
+<tr>
+<td>1,5</td>
+<td>0,9332</td>
+<td>0,9345</td>
+<td>0,9357</td>
+<td>0,9370</td>
+<td>0,9382</td>
+<td>0,9394</td>
+<td>0,9406</td>
+<td>0,9418</td>
+<td>0,9429</td>
+<td>0,9441</td>
+</tr>
+<tr>
+<td>1,6</td>
+<td>0,9452</td>
+<td>0,9463</td>
+<td>0,9474</td>
+<td>0,9484</td>
+<td>0,9495</td>
+<td>0,9505</td>
+<td>0,9515</td>
+<td>0,9525</td>
+<td>0,9535</td>
+<td>0,9545</td>
+</tr>
+<tr>
+<td>1,7</td>
+<td>0,9554</td>
+<td>0,9564</td>
+<td>0,9573</td>
+<td>0,9582</td>
+<td>0,9591</td>
+<td>0,9599</td>
+<td>0,9608</td>
+<td>0,9616</td>
+<td>0,9625</td>
+<td>0,9633</td>
+</tr>
+<tr>
+<td>1,8</td>
+<td>0,9641</td>
+<td>0,9649</td>
+<td>0,9656</td>
+<td>0,9664</td>
+<td>0,9671</td>
+<td>0,9678</td>
+<td>0,9686</td>
+<td>0,9693</td>
+<td>0,9699</td>
+<td>0,9706</td>
+</tr>
+<tr>
+<td>1,9</td>
+<td>0,9713</td>
+<td>0,9719</td>
+<td>0,9726</td>
+<td>0,9732</td>
+<td>0,9738</td>
+<td>0,9744</td>
+<td><strong>0,9750</strong></td>
+<td>0,9756</td>
+<td>0,9761</td>
+<td>0,9767</td>
+</tr>
+<tr>
+<td>2,0</td>
+<td>0,9772</td>
+<td>0,9778</td>
+<td>0,9783</td>
+<td>0,9788</td>
+<td>0,9793</td>
+<td>0,9798</td>
+<td>0,9803</td>
+<td>0,9808</td>
+<td>0,9812</td>
+<td>0,9817</td>
+</tr>
+<tr>
+<td>2,1</td>
+<td>0,9821</td>
+<td>0,9826</td>
+<td>0,9830</td>
+<td>0,9834</td>
+<td>0,9838</td>
+<td>0,9842</td>
+<td>0,9846</td>
+<td>0,9850</td>
+<td>0,9854</td>
+<td>0,9857</td>
+</tr>
+<tr>
+<td>2,2</td>
+<td>0,9861</td>
+<td>0,9864</td>
+<td>0,9868</td>
+<td>0,9871</td>
+<td>0,9875</td>
+<td>0,9878</td>
+<td>0,9881</td>
+<td>0,9884</td>
+<td>0,9887</td>
+<td>0,9890</td>
+</tr>
+<tr>
+<td>2,3</td>
+<td>0,9893</td>
+<td>0,9896</td>
+<td>0,9898</td>
+<td>0,9901</td>
+<td>0,9904</td>
+<td>0,9906</td>
+<td>0,9909</td>
+<td>0,9911</td>
+<td>0,9913</td>
+<td>0,9916</td>
+</tr>
+<tr>
+<td>2,4</td>
+<td>0,9918</td>
+<td>0,9920</td>
+<td>0,9922</td>
+<td>0,9925</td>
+<td>0,9927</td>
+<td>0,9929</td>
+<td>0,9931</td>
+<td>0,9932</td>
+<td>0,9934</td>
+<td>0,9936</td>
+</tr>
+<tr>
+<td>2,5</td>
+<td>0,9938</td>
+<td>0,9940</td>
+<td>0,9941</td>
+<td>0,9943</td>
+<td>0,9945</td>
+<td>0,9946</td>
+<td>0,9948</td>
+<td>0,9949</td>
+<td>0,9951</td>
+<td>0,9952</td>
+</tr>
+<tr>
+<td>2,6</td>
+<td>0,9953</td>
+<td>0,9955</td>
+<td>0,9956</td>
+<td>0,9957</td>
+<td>0,9959</td>
+<td>0,9960</td>
+<td>0,9961</td>
+<td>0,9962</td>
+<td>0,9963</td>
+<td>0,9964</td>
+</tr>
+</tbody>
+</table><p>Valor encontrado na tabela: <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>z</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msub><mo>=</mo><mn>1</mn><mo separator="true">,</mo><mn>96</mn></mrow><annotation encoding="application/x-tex">z_{\alpha/2} = 1,96</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.78576em; vertical-align: -0.3552em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.5198em; margin-left: -0.04398em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.3552em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.83888em; vertical-align: -0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">9</span><span class="mord">6</span></span></span></span></span></p>
+<p>Em <code>python</code>, encontramos o valor dos escores-z desejados utilizando o método <code>norm.isf((1 - alpha/2), loc=0, scale=1)</code>, admitindo uma normal padrão, da classe <code>stats</code> da biblioteca <code>scipy</code>.<br>
+Para determinar os escores-z:</p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+<span class="token keyword">import</span> scipy<span class="token punctuation">.</span>stats <span class="token keyword">as</span> st
+<span class="token comment"># IC bilateral de 90%</span>
+zEsc <span class="token operator">=</span> st<span class="token punctuation">.</span>norm<span class="token punctuation">.</span>isf<span class="token punctuation">(</span><span class="token number">0.95</span><span class="token punctuation">,</span> loc<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> scale<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token comment"># IC bilateral de 95%</span>
+zEsc <span class="token operator">=</span> st<span class="token punctuation">.</span>norm<span class="token punctuation">.</span>isf<span class="token punctuation">(</span><span class="token number">0.975</span><span class="token punctuation">,</span> loc<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> scale<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token comment"># IC bilateral de 99%</span>
+zEsc <span class="token operator">=</span> st<span class="token punctuation">.</span>norm<span class="token punctuation">.</span>isf<span class="token punctuation">(</span><span class="token number">0.995</span><span class="token punctuation">,</span> loc<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> scale<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="variância-desconhecida">Variância desconhecida</h3>
+<p>No caso da variância desconhecida, não é mais possível utilizarmos escores-z para definirmos o intervalo. No entanto, a distribuição de probabilidade <em>T-Student</em> é útil para modelar o comportamento do estimador da média amostral quando não se conhece a variância.</p>
+<h4 id="distribuição-t-student">Distribuição T-Student</h4>
+<p>Seja Z uma variável Normal Padrão: <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Z</mi><mo>=</mo><mi>N</mi><mo>(</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">Z =  N(0,1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.07153em;">Z</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.10903em;">N</span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span> e V uma variável Chi-Quadrado com k graus de liberdade: <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>V</mi><mo>=</mo><msubsup><mi>χ</mi><mi>k</mi><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">V = \chi_k^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.22222em;">V</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.09722em; vertical-align: -0.283108em;"></span><span class="mord"><span class="mord mathit">χ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.814108em;"><span class="" style="top: -2.41689em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathit mtight" style="margin-right: 0.03148em;">k</span></span></span><span class="" style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.283108em;"><span class=""></span></span></span></span></span></span></span></span></span></span> Definimos uma variável T como: <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mo>=</mo><mfrac><mi>Z</mi><msqrt><mrow><mi>V</mi><mi mathvariant="normal">/</mi><mi>k</mi></mrow></msqrt></mfrac></mrow><annotation encoding="application/x-tex">T = \frac{Z}{\sqrt{V/k}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">T</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.70193em; vertical-align: -0.8296em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.872331em;"><span class="" style="top: -2.46416em;"><span class="pstrut" style="height: 3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord sqrt mtight"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.03691em;"><span class="svg-align" style="top: -3.42857em;"><span class="pstrut" style="height: 3.42857em;"></span><span class="mord mtight" style="padding-left: 1.19em;"><span class="mord mathit mtight" style="margin-right: 0.22222em;">V</span><span class="mord mtight">/</span><span class="mord mathit mtight" style="margin-right: 0.03148em;">k</span></span></span><span class="" style="top: -3.00891em;"><span class="pstrut" style="height: 3.42857em;"></span><span class="hide-tail mtight" style="min-width: 0.853em; height: 1.54286em;"><svg width="400em" height="1.5428571428571431em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.419661em;"><span class=""></span></span></span></span></span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.394em;"><span class="pstrut" style="height: 3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.07153em;">Z</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.8296em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>. Neste caso, a variável T tem Distribuição T com k graus de liberdade. Assim, A distribuição T-Student se torna:<br>
+<span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mfrac><mrow><mi mathvariant="normal">Γ</mi><mo>[</mo><mo>(</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo>)</mo><mi mathvariant="normal">/</mi><mn>2</mn><mo>]</mo></mrow><mrow><msqrt><mrow><mi>π</mi><mi mathvariant="normal">/</mi><mi>k</mi></mrow></msqrt><mi mathvariant="normal">Γ</mi><mo>(</mo><mi>k</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>)</mo></mrow></mfrac><mo>⋅</mo><mfrac><mn>1</mn><mrow><mo>[</mo><msup><mi>x</mi><mn>2</mn></msup><mi mathvariant="normal">/</mi><mi>k</mi><mo>+</mo><mn>1</mn><msup><mo>]</mo><mrow><mo>(</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo>)</mo><mi mathvariant="normal">/</mi><mn>2</mn></mrow></msup></mrow></mfrac><mo separator="true">,</mo><mo>−</mo><mi mathvariant="normal">∞</mi><mo>&amp;lt;</mo><mi>x</mi><mo>&amp;lt;</mo><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">f(x) = \frac{\Gamma[(k+1)/2]}{\sqrt{\pi/k}\Gamma(k/2)} \cdot \frac{1}{[x^2/k + 1]^{(k+1)/2}}, -\infty &amp;lt; x &amp;lt; \infty</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.10764em;">f</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 2.557em; vertical-align: -1.13em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.427em;"><span class="" style="top: -2.175em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.935em;"><span class="svg-align" style="top: -3.2em;"><span class="pstrut" style="height: 3.2em;"></span><span class="mord" style="padding-left: 1em;"><span class="mord mathit" style="margin-right: 0.03588em;">π</span><span class="mord">/</span><span class="mord mathit" style="margin-right: 0.03148em;">k</span></span></span><span class="" style="top: -2.895em;"><span class="pstrut" style="height: 3.2em;"></span><span class="hide-tail" style="min-width: 1.02em; height: 1.28em;"><svg width="400em" height="1.28em" viewBox="0 0 400000 1296" preserveAspectRatio="xMinYMin slice"><path d="M263,681c0.7,0,18,39.7,52,119c34,79.3,68.167,
+158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120c340,-704.7,510.7,-1060.3,512,-1067
+c4.7,-7.3,11,-11,19,-11H40000v40H1012.3s-271.3,567,-271.3,567c-38.7,80.7,-84,
+175,-136,283c-52,108,-89.167,185.3,-111.5,232c-22.3,46.7,-33.8,70.3,-34.5,71
+c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1s-109,-253,-109,-253c-72.7,-168,-109.3,
+-252,-110,-252c-10.7,8,-22,16.7,-34,26c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26
+s76,-59,76,-59s76,-60,76,-60z M1001 80H40000v40H1012z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.305em;"><span class=""></span></span></span></span></span><span class="mord">Γ</span><span class="mopen">(</span><span class="mord mathit" style="margin-right: 0.03148em;">k</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">)</span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord">Γ</span><span class="mopen">[</span><span class="mopen">(</span><span class="mord mathit" style="margin-right: 0.03148em;">k</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord">/</span><span class="mord">2</span><span class="mclose">]</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 1.13em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 2.27544em; vertical-align: -0.954em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.32144em;"><span class="" style="top: -2.296em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mopen">[</span><span class="mord"><span class="mord mathit">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.740108em;"><span class="" style="top: -2.989em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathit" style="margin-right: 0.03148em;">k</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord">1</span><span class="mclose"><span class="mclose">]</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.814em;"><span class="" style="top: -2.989em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathit mtight" style="margin-right: 0.03148em;">k</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mclose mtight">)</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.954em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">−</span><span class="mord">∞</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.5782em; vertical-align: -0.0391em;"></span><span class="mord mathit">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord">∞</span></span></span></span></span></span>, em que <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Γ</mi><mo>(</mo><mo>⋅</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">\Gamma(\cdot)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord">Γ</span><span class="mopen">(</span><span class="mord">⋅</span><span class="mclose">)</span></span></span></span></span> é a função Gama.</p>
+<h4 id="escore-t">Escore-t</h4>
+<p>Define-se o escore-t como o valor para o qual há <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(1-\alpha)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mclose">)</span></span></span></span></span> de área à sua esquerda na Curva da Distribuição T com <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.03148em;">k</span></span></span></span></span> graus de liberdade. A distribuição T se aproxima da Normal à medida em que <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>→</mo><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">k \rightarrow \infty</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.03148em;">k</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord">∞</span></span></span></span></span>.<br>
+Usando <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathit">s</span></span></span></span></span> como o estimador da variância, rescrevemos o escore-t com <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>=</mo><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">k = n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.03148em;">k</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.66666em; vertical-align: -0.08333em;"></span><span class="mord mathit">n</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span class="mord">1</span></span></span></span></span> graus de liberdade, em que <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathit">n</span></span></span></span></span> é o tamanho da amostra. Assim, para um <strong>Intervalo bilateral</strong> <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>t</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msubsup></mrow><annotation encoding="application/x-tex">t^{n-1}_{\alpha/2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1.36944em; vertical-align: -0.5152em;"></span><span class="mord"><span class="mord mathit">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.854239em;"><span class="" style="top: -2.3598em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span><span class="" style="top: -3.10313em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.5152em;"><span class=""></span></span></span></span></span></span></span></span></span></span>: escore-t implica em <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>−</mo><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow></mrow><annotation encoding="application/x-tex">1-{\alpha/2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord"><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mord">/</span><span class="mord">2</span></span></span></span></span></span><br>
+<span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mover accent="true"><mi>x</mi><mo stretchy="true">‾</mo></mover><mo>−</mo><mfrac><mrow><msubsup><mi>t</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mi>s</mi></mrow><msqrt><mi>n</mi></msqrt></mfrac><mo>≤</mo><mi>μ</mi><mo>≤</mo><mover accent="true"><mi>x</mi><mo stretchy="true">‾</mo></mover><mo>+</mo><mfrac><mrow><msubsup><mi>t</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mi>s</mi></mrow><msqrt><mi>n</mi></msqrt></mfrac></mrow><annotation encoding="application/x-tex">\overline{x} -\frac{ t^{n-1}_{\alpha/2} s}{\sqrt{n}} \le \mu \le \overline{x} +\frac{ t^{n-1}_{\alpha/2} s}{\sqrt{n}} </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.71389em; vertical-align: -0.08333em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.63056em;"><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathit">x</span></span></span><span class="" style="top: -3.55056em;"><span class="pstrut" style="height: 3em;"></span><span class="overline-line" style="border-bottom-width: 0.04em;"></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 2.68944em; vertical-align: -0.93em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.75944em;"><span class="" style="top: -2.30972em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.80028em;"><span class="svg-align" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord" style="padding-left: 0.833em;"><span class="mord mathit">n</span></span></span><span class="" style="top: -2.76028em;"><span class="pstrut" style="height: 3em;"></span><span class="hide-tail" style="min-width: 0.853em; height: 1.08em;"><svg width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.23972em;"><span class=""></span></span></span></span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.9052em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord"><span class="mord mathit">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.854239em;"><span class="" style="top: -2.3598em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span><span class="" style="top: -3.10313em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.5152em;"><span class=""></span></span></span></span></span></span><span class="mord mathit">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.93em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.83041em; vertical-align: -0.19444em;"></span><span class="mord mathit">μ</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.71389em; vertical-align: -0.08333em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.63056em;"><span class="" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathit">x</span></span></span><span class="" style="top: -3.55056em;"><span class="pstrut" style="height: 3em;"></span><span class="overline-line" style="border-bottom-width: 0.04em;"></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 2.68944em; vertical-align: -0.93em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.75944em;"><span class="" style="top: -2.30972em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.80028em;"><span class="svg-align" style="top: -3em;"><span class="pstrut" style="height: 3em;"></span><span class="mord" style="padding-left: 0.833em;"><span class="mord mathit">n</span></span></span><span class="" style="top: -2.76028em;"><span class="pstrut" style="height: 3em;"></span><span class="hide-tail" style="min-width: 0.853em; height: 1.08em;"><svg width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z"></path></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.23972em;"><span class=""></span></span></span></span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.9052em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord"><span class="mord mathit">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.854239em;"><span class="" style="top: -2.3598em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span><span class="" style="top: -3.10313em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.5152em;"><span class=""></span></span></span></span></span></span><span class="mord mathit">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.93em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span><br>
+Da mesma forma que para o escore-z, o escore-t é definido encontrando o valor de <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>t</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msubsup></mrow><annotation encoding="application/x-tex">t^{n-1}_{\alpha/2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1.36944em; vertical-align: -0.5152em;"></span><span class="mord"><span class="mord mathit">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.854239em;"><span class="" style="top: -2.3598em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span><span class="" style="top: -3.10313em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.5152em;"><span class=""></span></span></span></span></span></span></span></span></span></span> (intervalo bilateral) que produz uma probabilidade <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>=</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo>(</mo><mi>T</mi><mo>≤</mo><msubsup><mi>t</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mo>)</mo></mrow><annotation encoding="application/x-tex">\alpha/2= 1-P(T\le t^{n-1}_{\alpha/2})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mord">/</span><span class="mord">2</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit" style="margin-right: 0.13889em;">T</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.36944em; vertical-align: -0.5152em;"></span><span class="mord"><span class="mord mathit">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.854239em;"><span class="" style="top: -2.3598em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span><span class="" style="top: -3.10313em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.5152em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span>. Tal probabilidade agora depende de dois fatores: o grau de confiança <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(1-\alpha)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mclose">)</span></span></span></span></span> e o número de graus de liberdade <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>=</mo><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">k = n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.03148em;">k</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.66666em; vertical-align: -0.08333em;"></span><span class="mord mathit">n</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span class="mord">1</span></span></span></span></span>. Utilizamos uma tabela da distribuição T para encontrar os escores desejados.</p>
+<h4 id="exemplo-determinar-os-escores-t-para-um-intervalo-de-confiança-de-95">Exemplo: determinar os escores t para um intervalo de confiança de 95%</h4>
+<p><span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi>α</mi><mo>)</mo><mo>=</mo><mn>95</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">(1-\alpha) = 95\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.80556em; vertical-align: -0.05556em;"></span><span class="mord">9</span><span class="mord">5</span><span class="mord">%</span></span></span></span></span> então <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>05</mn><mo>→</mo><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>025</mn></mrow><annotation encoding="application/x-tex">\alpha = 0,05 \rightarrow \alpha/2 =0,025</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.83888em; vertical-align: -0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">0</span><span class="mord">5</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mord">/</span><span class="mord">2</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.83888em; vertical-align: -0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">0</span><span class="mord">2</span><span class="mord">5</span></span></span></span></span><br>
+<span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mn>025</mn><mo>=</mo><mn>1</mn><mo>−</mo><mi>P</mi><mo>(</mo><mi>x</mi><mo>≤</mo><msubsup><mi>t</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mo>)</mo><mo>→</mo><mi>P</mi><mo>(</mo><mi>x</mi><mo>≤</mo><msubsup><mi>t</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mo>)</mo><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>975</mn></mrow><annotation encoding="application/x-tex">0,025= 1-P(x\le t^{n-1}_{\alpha/2}) \rightarrow P(x\le t^{n-1}_{\alpha/2}) = 0,975</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.83888em; vertical-align: -0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">0</span><span class="mord">2</span><span class="mord">5</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.36944em; vertical-align: -0.505331em;"></span><span class="mord"><span class="mord mathit">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.864108em;"><span class="" style="top: -2.36967em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.505331em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.13889em;">P</span><span class="mopen">(</span><span class="mord mathit">x</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.36944em; vertical-align: -0.505331em;"></span><span class="mord"><span class="mord mathit">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.864108em;"><span class="" style="top: -2.36967em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span><span class="" style="top: -3.113em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.505331em;"><span class=""></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.83888em; vertical-align: -0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">9</span><span class="mord">7</span><span class="mord">5</span></span></span></span></span></span><br>
+Note que é necessário saber o número de graus de liberdade para determinar o escore-t correto.<br>
+Assumindo <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>=</mo><mn>23</mn></mrow><annotation encoding="application/x-tex">n = 23</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathit">n</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span class="mord">2</span><span class="mord">3</span></span></span></span></span>, temos <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>=</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo>=</mo><mn>22</mn></mrow><annotation encoding="application/x-tex">k = n-1 = 22</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.03148em;">k</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.66666em; vertical-align: -0.08333em;"></span><span class="mord mathit">n</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span class="mord">2</span><span class="mord">2</span></span></span></span></span> graus de liberdade. Para um IC de 95%, procuramos a linha com <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>025</mn></mrow><annotation encoding="application/x-tex">\alpha = 0,025</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.83888em; vertical-align: -0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">0</span><span class="mord">2</span><span class="mord">5</span></span></span></span></span> e <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>=</mo><mn>22</mn></mrow><annotation encoding="application/x-tex">k = 22</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.03148em;">k</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span class="mord">2</span><span class="mord">2</span></span></span></span></span>:</p>
+
+<table>
+<thead>
+<tr>
+<th><span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mi mathvariant="normal">/</mi><mi>α</mi></mrow><annotation encoding="application/x-tex">k/\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.03148em;">k</span><span class="mord">/</span><span class="mord mathit" style="margin-right: 0.0037em;">α</span></span></span></span></span></th>
+<th>0,25</th>
+<th>0,10</th>
+<th>0,05</th>
+<th>0,025</th>
+<th>0,01</th>
+<th>0,005</th>
+<th>0,0025</th>
+<th>0,001</th>
+<th>0,0005</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1,000</td>
+<td>3,078</td>
+<td>6,314</td>
+<td>12,71</td>
+<td>31,82</td>
+<td>63,66</td>
+<td>127,3</td>
+<td>318,3</td>
+<td>636,6</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0,816</td>
+<td>1,886</td>
+<td>2,920</td>
+<td>4,303</td>
+<td>6,965</td>
+<td>9,925</td>
+<td>14,09</td>
+<td>22,33</td>
+<td>31,60</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0,765</td>
+<td>1,638</td>
+<td>2,353</td>
+<td>3,182</td>
+<td>4,541</td>
+<td>5,841</td>
+<td>7,453</td>
+<td>10,21</td>
+<td>12,92</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0,741</td>
+<td>1,533</td>
+<td>2,132</td>
+<td>2,776</td>
+<td>3,747</td>
+<td>4,604</td>
+<td>5,598</td>
+<td>7,173</td>
+<td>8,610</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0,727</td>
+<td>1,476</td>
+<td>2,015</td>
+<td>2,571</td>
+<td>3,365</td>
+<td>4,032</td>
+<td>4,773</td>
+<td>5,894</td>
+<td>6,869</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0,718</td>
+<td>1,440</td>
+<td>1,943</td>
+<td>2,447</td>
+<td>3,143</td>
+<td>3,707</td>
+<td>4,317</td>
+<td>5,208</td>
+<td>5,959</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0,711</td>
+<td>1,415</td>
+<td>1,895</td>
+<td>2,365</td>
+<td>2,998</td>
+<td>3,499</td>
+<td>4,029</td>
+<td>4,785</td>
+<td>5,408</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0,706</td>
+<td>1,397</td>
+<td>1,860</td>
+<td>2,306</td>
+<td>2,896</td>
+<td>3,355</td>
+<td>3,833</td>
+<td>4,501</td>
+<td>5,041</td>
+</tr>
+<tr>
+<td>9</td>
+<td>0,703</td>
+<td>1,383</td>
+<td>1,833</td>
+<td>2,262</td>
+<td>2,821</td>
+<td>3,250</td>
+<td>3,690</td>
+<td>4,297</td>
+<td>4,781</td>
+</tr>
+<tr>
+<td>10</td>
+<td>0,700</td>
+<td>1,372</td>
+<td>1,812</td>
+<td>2,228</td>
+<td>2,764</td>
+<td>3,169</td>
+<td>3,581</td>
+<td>4,144</td>
+<td>4,587</td>
+</tr>
+<tr>
+<td>11</td>
+<td>0,697</td>
+<td>1,363</td>
+<td>1,796</td>
+<td>2,201</td>
+<td>2,718</td>
+<td>3,106</td>
+<td>3,497</td>
+<td>4,025</td>
+<td>4,437</td>
+</tr>
+<tr>
+<td>12</td>
+<td>0,695</td>
+<td>1,356</td>
+<td>1,782</td>
+<td>2,179</td>
+<td>2,681</td>
+<td>3,055</td>
+<td>3,428</td>
+<td>3,930</td>
+<td>4,318</td>
+</tr>
+<tr>
+<td>13</td>
+<td>0,694</td>
+<td>1,350</td>
+<td>1,771</td>
+<td>2,160</td>
+<td>2,650</td>
+<td>3,012</td>
+<td>3,372</td>
+<td>3,852</td>
+<td>4,221</td>
+</tr>
+<tr>
+<td>14</td>
+<td>0,692</td>
+<td>1,345</td>
+<td>1,761</td>
+<td>2,145</td>
+<td>2,624</td>
+<td>2,977</td>
+<td>3,326</td>
+<td>3,787</td>
+<td>4,140</td>
+</tr>
+<tr>
+<td>15</td>
+<td>0,691</td>
+<td>1,341</td>
+<td>1,753</td>
+<td>2,131</td>
+<td>2,602</td>
+<td>2,947</td>
+<td>3,286</td>
+<td>3,733</td>
+<td>4,073</td>
+</tr>
+<tr>
+<td>16</td>
+<td>0,690</td>
+<td>1,337</td>
+<td>1,746</td>
+<td>2,120</td>
+<td>2,583</td>
+<td>2,921</td>
+<td>3,252</td>
+<td>3,686</td>
+<td>4,015</td>
+</tr>
+<tr>
+<td>17</td>
+<td>0,689</td>
+<td>1,333</td>
+<td>1,740</td>
+<td>2,110</td>
+<td>2,567</td>
+<td>2,898</td>
+<td>3,222</td>
+<td>3,646</td>
+<td>3,965</td>
+</tr>
+<tr>
+<td>18</td>
+<td>0,688</td>
+<td>1,330</td>
+<td>1,734</td>
+<td>2,101</td>
+<td>2,552</td>
+<td>2,878</td>
+<td>3,197</td>
+<td>3,610</td>
+<td>3,922</td>
+</tr>
+<tr>
+<td>19</td>
+<td>0,688</td>
+<td>1,328</td>
+<td>1,729</td>
+<td>2,093</td>
+<td>2,539</td>
+<td>2,861</td>
+<td>3,174</td>
+<td>3,579</td>
+<td>3,883</td>
+</tr>
+<tr>
+<td><strong>20</strong></td>
+<td>0,687</td>
+<td>1,325</td>
+<td><strong>1,725</strong></td>
+<td><strong>2,086</strong></td>
+<td>2,528</td>
+<td><strong>2,845</strong></td>
+<td>3,153</td>
+<td>3,552</td>
+<td>3,85</td>
+</tr>
+<tr>
+<td>21</td>
+<td>0,686</td>
+<td>1,323</td>
+<td>1,721</td>
+<td>2,080</td>
+<td>2,518</td>
+<td>2,831</td>
+<td>3,135</td>
+<td>3,527</td>
+<td>3,819</td>
+</tr>
+<tr>
+<td><strong>22</strong></td>
+<td>0,686</td>
+<td>1,321</td>
+<td>1,717</td>
+<td><strong>2,074</strong></td>
+<td>2,508</td>
+<td>2,819</td>
+<td>3,119</td>
+<td>3,505</td>
+<td>3,792</td>
+</tr>
+<tr>
+<td>23</td>
+<td>0,685</td>
+<td>1,319</td>
+<td>1,714</td>
+<td>2,069</td>
+<td>2,500</td>
+<td>2,807</td>
+<td>3,104</td>
+<td>3,485</td>
+<td>3,768</td>
+</tr>
+<tr>
+<td>24</td>
+<td>0,685</td>
+<td>1,318</td>
+<td>1,711</td>
+<td>2,064</td>
+<td>2,492</td>
+<td>2,797</td>
+<td>3,091</td>
+<td>3,467</td>
+<td>3,745</td>
+</tr>
+<tr>
+<td>25</td>
+<td>0,684</td>
+<td>1,316</td>
+<td>1,708</td>
+<td>2,060</td>
+<td>2,485</td>
+<td>2,787</td>
+<td>3,078</td>
+<td>3,450</td>
+<td>3,725</td>
+</tr>
+</tbody>
+</table><p>À medida que a quantidade de graus de liberdade aumenta, os escores-t se aproximam dos escores-z.</p>
+<p>Em <code>python</code>, encontramos o valor dos escores-t desejados utilizando o método <code>t.isf((1 - alpha/2), loc=0, scale=1)</code>, que significa <em>Inverse survival function</em> admitindo uma distribuição t-Student padrão, da classe <code>stats</code> da biblioteca <code>scipy</code>.<br>
+Verifique o código a seguir e localize os escores-t de acordo com a tabela.</p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+<span class="token keyword">import</span> scipy<span class="token punctuation">.</span>stats <span class="token keyword">as</span> st
+<span class="token comment"># tamanho da amostra</span>
+n <span class="token operator">=</span> <span class="token number">20</span>
+<span class="token comment"># graus de liberdade</span>
+k <span class="token operator">=</span> n<span class="token number">-1</span>
+<span class="token comment"># IC bilateral de 90%</span>
+tEsc <span class="token operator">=</span> st<span class="token punctuation">.</span>t<span class="token punctuation">.</span>isf<span class="token punctuation">(</span><span class="token number">0.95</span><span class="token punctuation">,</span>k<span class="token punctuation">,</span> loc<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> scale<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>tEsc<span class="token punctuation">)</span>
+<span class="token comment"># IC bilateral de 95%</span>
+tEsc <span class="token operator">=</span> st<span class="token punctuation">.</span>t<span class="token punctuation">.</span>isf<span class="token punctuation">(</span><span class="token number">0.975</span><span class="token punctuation">,</span>k<span class="token punctuation">,</span> loc<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> scale<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>tEsc<span class="token punctuation">)</span>
+<span class="token comment"># IC bilateral de 99%</span>
+tEsc <span class="token operator">=</span> st<span class="token punctuation">.</span>t<span class="token punctuation">.</span>isf<span class="token punctuation">(</span><span class="token number">0.995</span><span class="token punctuation">,</span>k<span class="token punctuation">,</span> loc<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> scale<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>tEsc<span class="token punctuation">)</span>
+</code></pre>
+<h3 id="exercício">Exercício</h3>
+<p>Construir um intervalo de confiança de 95% para as amostras a seguir:</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>19.8</td>
+<td>15.4</td>
+<td>11.4</td>
+<td>19.5</td>
+<td>10.1</td>
+<td>18.5</td>
+<td>14.1</td>
+<td>8.8</td>
+<td>14.9</td>
+<td>7.9</td>
+<td>17.6</td>
+</tr>
+<tr>
+<td>13.6</td>
+<td>7.5</td>
+<td>12.7</td>
+<td>16.7</td>
+<td>11.9</td>
+<td>15.4</td>
+<td>15.4</td>
+<td>11.9</td>
+<td>11.4</td>
+<td>15.8</td>
+<td>11.4</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table><p>Da amostra, obtém-se <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>=</mo><mn>22</mn><mo>→</mo><mi>k</mi><mo>=</mo><mn>21</mn></mrow><annotation encoding="application/x-tex">n = 22 \rightarrow k = 21</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.43056em; vertical-align: 0em;"></span><span class="mord mathit">n</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span class="mord">2</span><span class="mord">2</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathit" style="margin-right: 0.03148em;">k</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span class="mord">2</span><span class="mord">1</span></span></span></span></span>. Portanto, o escore-t para um IC de 95% será o equivalente a <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>025</mn></mrow><annotation encoding="application/x-tex">\alpha/2=0,025</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord mathit" style="margin-right: 0.0037em;">α</span><span class="mord">/</span><span class="mord">2</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.83888em; vertical-align: -0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">0</span><span class="mord">2</span><span class="mord">5</span></span></span></span></span>, ou seja, <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>t</mi><mrow><mi>α</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mo>=</mo><msubsup><mi>t</mi><mrow><mn>0</mn><mo separator="true">,</mo><mn>025</mn></mrow><mn>21</mn></msubsup><mo>=</mo><mn>2</mn><mo separator="true">,</mo><mn>080</mn></mrow><annotation encoding="application/x-tex">t^{n-1}_{\alpha/2} = t^{21}_{0,025} = 2,080</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1.36944em; vertical-align: -0.5152em;"></span><span class="mord"><span class="mord mathit">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.854239em;"><span class="" style="top: -2.3598em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right: 0.0037em;">α</span><span class="mord mtight">/</span><span class="mord mtight">2</span></span></span></span><span class="" style="top: -3.10313em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.5152em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 1.19832em; vertical-align: -0.384216em;"></span><span class="mord"><span class="mord mathit">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.814108em;"><span class="" style="top: -2.45189em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span><span class="mpunct mtight">,</span><span class="mord mtight">0</span><span class="mord mtight">2</span><span class="mord mtight">5</span></span></span></span><span class="" style="top: -3.063em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.384216em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.83888em; vertical-align: -0.19444em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">0</span><span class="mord">8</span><span class="mord">0</span></span></span></span></span> (verificar na tabela)<br>
+O código em <code>python</code> a seguir determina os intervalos para os ICs considerando o caso da variância desconhecida:</p>
+<pre class=" language-python"><code class="prism  language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+<span class="token keyword">import</span> scipy<span class="token punctuation">.</span>stats <span class="token keyword">as</span> st
+<span class="token comment"># calculo da media amostral</span>
+X <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">19.8</span><span class="token punctuation">,</span> <span class="token number">15.4</span><span class="token punctuation">,</span> <span class="token number">11.4</span><span class="token punctuation">,</span> <span class="token number">19.5</span><span class="token punctuation">,</span> <span class="token number">10.1</span><span class="token punctuation">,</span> <span class="token number">18.5</span><span class="token punctuation">,</span> <span class="token number">14.1</span><span class="token punctuation">,</span><span class="token number">8.8</span><span class="token punctuation">,</span> <span class="token number">14.9</span><span class="token punctuation">,</span> <span class="token number">7.9</span><span class="token punctuation">,</span> <span class="token number">17.6</span><span class="token punctuation">,</span><span class="token number">13.6</span><span class="token punctuation">,</span> <span class="token number">7.5</span><span class="token punctuation">,</span> <span class="token number">12.7</span><span class="token punctuation">,</span> <span class="token number">16.7</span><span class="token punctuation">,</span><span class="token number">11.9</span><span class="token punctuation">,</span> <span class="token number">15.4</span><span class="token punctuation">,</span> <span class="token number">15.4</span><span class="token punctuation">,</span> <span class="token number">11.9</span><span class="token punctuation">,</span> <span class="token number">11.4</span><span class="token punctuation">,</span> <span class="token number">15.8</span><span class="token punctuation">,</span> <span class="token number">11.4</span><span class="token punctuation">]</span>
+medX <span class="token operator">=</span> np<span class="token punctuation">.</span>mean<span class="token punctuation">(</span>X<span class="token punctuation">)</span>
+n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>X<span class="token punctuation">)</span>
+s <span class="token operator">=</span> np<span class="token punctuation">.</span>std<span class="token punctuation">(</span>X<span class="token punctuation">,</span> ddof<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token comment"># intervalo de confianca de 95% </span>
+tEsc<span class="token operator">=</span> <span class="token operator">-</span>st<span class="token punctuation">.</span>t<span class="token punctuation">.</span>isf<span class="token punctuation">(</span><span class="token number">0.975</span><span class="token punctuation">,</span>n<span class="token number">-1</span><span class="token punctuation">,</span> loc<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> scale<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+Linf <span class="token operator">=</span> medX <span class="token operator">-</span> tEsc <span class="token operator">*</span>s<span class="token operator">/</span>np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+Lsup <span class="token operator">=</span> medX <span class="token operator">+</span> tEsc <span class="token operator">*</span>s<span class="token operator">/</span>np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>tEsc<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Intervalo de Confianca:"</span><span class="token punctuation">,</span>Linf <span class="token punctuation">,</span><span class="token string">"a"</span><span class="token punctuation">,</span>Lsup<span class="token punctuation">)</span>
+</code></pre>
+<p>Modifique o código acima para exibir o intervalo de confiança de 90% e de 99% para a mesma amostra.</p>
+<h3 id="exercício-2">Exercício 2</h3>
+<p>Utilizando os conceitos fixados sobre intervalo de confiança:</p>
+<ol>
+<li>Calcular o intervalo de confiança de 95% para a seguinte amostra, com variância populacional desconhecida:</li>
+</ol>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>19,8</td>
+<td>18,5</td>
+<td>17,6</td>
+<td>16,7</td>
+<td>15,8</td>
+<td>15,4</td>
+<td>14,1</td>
+<td>13,6</td>
+<td>11,9</td>
+<td>11,4</td>
+<td></td>
+</tr>
+<tr>
+<td>11,4</td>
+<td>8,8</td>
+<td>7,5</td>
+<td>15,4</td>
+<td>15,4</td>
+<td>19,5</td>
+<td>14,9</td>
+<td>12,7</td>
+<td>10,1</td>
+<td>7,9</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table><ol start="2">
+<li>O peso de componentes eletrônicos produzidos por determinada  empresa é uma v. a. que se supõe ter distribuição aproximadamente normal. Pretendendo-se estudar a variabilidade do peso dos referidos componentes, recolheu-se uma amostra de 11 elementos, cujos valores (em gramas) foram:</li>
+</ol>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>98</td>
+<td>97</td>
+<td>102</td>
+<td>100</td>
+<td>98</td>
+<td>101</td>
+<td>102</td>
+<td>105</td>
+<td>95</td>
+<td>102</td>
+<td>100</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table><ul>
+<li>Apresente uma estimativa para a média do peso dos componentes.</li>
+<li>Construa um intervalo de confiança para a média do peso, com um grau de confiança de 95%.</li>
+<li>Construa um intervalo de confiança a 99% para a média do peso.</li>
+</ul>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+</div>
+</body>
+
+</html>
